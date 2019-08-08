@@ -1,9 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import * as rtl from '@testing-library/react';
 import App from './App';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
+it('renders a span with the text Hello World', () => {
+  const wrapper = rtl.render(
+    <App />
+  );
+  const element = wrapper.queryByText(/hello world/i);
+  expect(element).toBeInTheDocument();
+  console.log(wrapper.debug());
 });
